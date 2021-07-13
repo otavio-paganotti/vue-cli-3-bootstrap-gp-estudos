@@ -1,22 +1,20 @@
 <template>
   <div>
     <h1>CADASTRO</h1>
-    <h2>sou eu</h2>
-    <h4>test comiit job</h4>
   </div>
 </template>
 
 <script>
 export default {
   name: 'cadastro',
-  
-  data:() => ({
-    x:0,
+
+  data: () => ({
+    x: 0,
     lista: []
   }),
 
   methods: {
-    soma (){
+    soma () {
       console.log('oi')
     }
   }
