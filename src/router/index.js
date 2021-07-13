@@ -3,13 +3,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'Layout',
-    component: () => import('../layouts/default'),
+    name: 'Home',
+    component: () => import('../layouts/Home.vue'),
     children: [
       {
-        path: '/',
-        name: 'Cadastro',
-        component: () => import('../views/Cadastro.vue')
+        path: '/cadastro',
+        name: 'formulario-cadastro',
+        component: () => import('../components/Cadastro.vue')
       }
     ]
   }
