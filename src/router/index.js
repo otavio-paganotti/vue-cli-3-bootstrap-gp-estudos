@@ -10,7 +10,7 @@ const routes = [
         path: '/',
         name: 'Cadastro',
         component: () => import('../views/Cadastro.vue')
-      },
+      }
     ]
   }
 ]
