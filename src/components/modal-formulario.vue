@@ -1,8 +1,13 @@
 <template>
-  <div class="container">
-      <div class="row">
-        <form>
-            <h2 class="text-center">Cadastro de Amigo</h2>
+  <div class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="text-center">Cadastro de Amigo</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
             <div class="mb-3">
                 <label for="inputNome" class="form-label">Nome</label>
                 <input type="text" class="form-control" placeholder="Insira seu nome">
@@ -30,14 +35,20 @@
                 </div>
             </div>
             <button class="btn btn-primary">CADASTRAR</button>
-        </form>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary">Cadastrar</button>
+        </div>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Cadastro',
+  name: 'formulario',
   data () {
     return {
       selected: 'A',
@@ -53,6 +64,7 @@ export default {
 </script>
 
 <style>
+
 .text-center{
     text-align: center;
 }

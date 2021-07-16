@@ -3,7 +3,6 @@
     <nav class="navbar bg-purple">
       <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">Navbar</span>
-        <router-link to="/cadastro" class="mb-0 h3">Cadastro de amigos</router-link>
       </div>
     </nav>
     <router-view />

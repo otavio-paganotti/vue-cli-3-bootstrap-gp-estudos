@@ -7,9 +7,9 @@ const routes = [
     component: () => import('../layouts/Home.vue'),
     children: [
       {
-        path: '/cadastro',
+        path: '/',
         name: 'formulario-cadastro',
-        component: () => import('../components/Cadastro.vue')
+        component: () => import('../views/Cadastro.vue')
       }
     ]
   }
