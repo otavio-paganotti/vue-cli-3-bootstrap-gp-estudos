@@ -3,23 +3,28 @@
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Cadastrar amigo
     </button>
-    <table class="table">
-      <thead>
+    <table class="table table-striped">
+      <thead class="text-center">
         <tr>
           <th scope="col">Foto</th>
           <th scope="col">Nome</th>
           <th scope="col">Telefone</th>
           <th scope="col">Enrabado</th>
           <th scope="col">Pais</th>
+          <th scope="col">Opções</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="text-center align-middle">
         <tr v-for="dado in amigos" v-bind:key="dado">
           <td><img :src="dado.foto" alt="" class="foto-do-amigo"></td>
           <td>{{ dado.nome }}</td>
           <td>{{ dado.telefone }}</td>
           <td>{{ dado.enrabado }}</td>
           <td>{{ dado.pais }}</td>
+          <td>
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
+            <button type="button" class="btn btn-danger" v-on:click="deleteRow(dado.id)" >Deletar</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -56,8 +61,8 @@
                   <label for="inputNome" class="form-label">Pais</label>
                   <div id="v-model-select-dynamic" class="demo">
                       <select v-model="selected">
-                          <option v-for="option in options" :value="option.value" v-bind:key="option">
-                          {{ option.text }}
+                          <option v-for="item in options" :value="item" v-bind:key="item">
+                          {{ item }}
                           </option>
                       </select>
                   </div>
@@ -66,7 +71,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-primary" @click="verifyForm()">Cadastrar</button>
+            <button id="btn-salvar" type="button" class="btn btn-primary" @click="verifyForm()">Cadastrar</button>
           </div>
         </div>
       </div>
@@ -79,12 +84,12 @@ export default {
   name: 'cadastro',
   data: () => ({
     // é onde a gente armazena nossas variáveis dentro do componente
-    selected: '',
+    selected: 'Brasil',
     options: [
-      { text: 'Brasil', value: 'A' },
-      { text: 'Argentina', value: 'B' },
-      { text: 'Paraguai', value: 'C' },
-      { text: 'Somalia', value: 'D' }
+      'Brasil',
+      'Argentina',
+      'Paraguai',
+      'Somalia'
     ],
     foto: '',
     nome: '',
@@ -107,8 +112,6 @@ export default {
         this.setSucess(nomeAmigo);
       }
       function verifyLink (foto) {
-        console.log('chegou aqui')
-        console.log(foto)
         const checkLink = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/;
         if (foto.match(checkLink)) {
           return true
@@ -151,15 +154,14 @@ export default {
       }
       if (!existError) {
         this.addAmigo();
-        nomeAmigo.value = ''
-        fotoAmigo.value = ''
-        telefoneAmigo.value = ''
-        enrabadoAmigo.value = ''
+        this.nome = ''
+        this.foto = ''
+        this.telefone = ''
+        this.enrabado = ''
       }
     },
     setError (input, message) {
       const formControl = input.parentElement;
-      console.log(input + message)
       const small = formControl.querySelector('small');
 
       small.innerText = message;
@@ -169,16 +171,19 @@ export default {
       const small = formControl.querySelector('small');
 
       small.style.display = 'none';
-      console.log('teste')
     },
     addAmigo () {
       this.amigos.push({
+        id: this.amigos.length,
         foto: this.foto,
         nome: this.nome,
         telefone: this.telefone,
         enrabado: this.enrabado,
         pais: this.selected
       })
+    },
+    deleteRow (index) {
+      this.amigos.splice(index, 1)
     }
   }
 }
