@@ -10,6 +10,11 @@ const routes = [
         path: '/',
         name: 'formulario-cadastro',
         component: () => import('../views/Cadastro.vue')
+      },
+      {
+        path: '/amigo',
+        name: 'formulario-cadastro-amigo',
+        component: () => import('../views/CadastroAmigo.vue')
       }
     ]
   }
