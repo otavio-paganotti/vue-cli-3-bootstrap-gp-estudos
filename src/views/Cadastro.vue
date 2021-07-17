@@ -1,5 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Logo</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,6 +18,8 @@
     </div>
   </div>
 </nav>
+
+<modal-formulario ref="modalFormulario" @atualizaAmigos="val => amigos.push(val)"/>
 
 <div class="container">
   <div class="row justify-content-center">
@@ -36,41 +39,43 @@
         <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>Kardek</td>
-            <td>Foto</td>
-            <td>67996057121</td>
-            <td>3</td>
-            <td>Brasil</td>
-            <td>Editar</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>José</td>
-            <td>FotoJosé</td>
-            <td>67996786512</td>
-            <td>7</td>
-            <td>Argentina</td>
-            <td>Excluir</td>
+            <td>{{ dado.nome }}</td>
+            <td>{{ dado.foto }}</td>
+            <td>{{ dado.telefone }}</td>
+            <td>{{ dado.vezes }}</td>
+            <td></td>
+            <td>
+              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="editar(dado)">Editar</button>
+              <!-- <button type="button" class="btn btn-danger" v-on:click="deleteRow(dado.id)" >Deletar</button> -->
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+ </div>
 </template>
 
 <script>
+import modalFormulario from '../components/modal-formulario.vue'
+
 export default {
+  components: { modalFormulario },
   name: 'cadastro',
 
   data: () => ({
-    x: 0,
-    lista: []
+    // form: {
+    //   nome: 'Anderson',
+    //   Foto: 'Fototop',
+    //   Telefone: '67996057121',
+    //   Vezes: '2'
+    // }
   }),
 
   methods: {
-    soma () {
-      console.log('oi')
+    editar (dado) {
+      this.$refs.modalFormulario.addToModel(dado)
     }
   }
 }
